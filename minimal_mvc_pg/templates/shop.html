@@ -1,0 +1,15 @@
+<h1>Welcome {{ current_user.username }}</h1>
+<p>Beers: {{ current_user.beer_count }} | Spent: ${{ current_user.money_spent }}</p>
+
+<ul>
+{% for p in products %}
+  <li>
+    {{ p.name }} – ${{ p.price }} for {{ p.units }} 
+    <form action="{{ url_for('buy', product_id=p.id) }}" method="post" style="display:inline">
+      {{ csrf_token() }}
+      <button type="submit">Buy</button>
+    </form>
+  </li>
+{% endfor %}
+</ul>
+
