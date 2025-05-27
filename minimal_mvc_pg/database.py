@@ -3,15 +3,18 @@ import os
 
 # Try to get from system enviroment variable
 # Set your Postgres user and password as second arguments of these two next function calls
-user = os.environ.get('PGUSER', 'postgres')
-password = os.environ.get('PGPASSWORD', '123')
-host = os.environ.get('HOST', '127.0.0.1')
+# user = os.environ.get('PGUSER', 'postgres')
+# password = os.environ.get('PGPASSWORD', '123')
+# host = os.environ.get('HOST', '127.0.0.1')
 
 def db_connection():
-    db = "dbname='todo' user=" + user + " host=" + host + " password =" + password
-    conn = psycopg2.connect(db)
-
-    return conn
+    return psycopg2.connect(
+        dbname   = os.getenv('POSTGRES_DB',  'todo'),
+        user     = os.getenv('PGUSER',        'postgres'),
+        password = os.getenv('PGPASSWORD',    '123'),
+        host     = os.getenv('HOST',          'db'),
+        port     = 5432,
+    )
 
 def init_db():
     conn = db_connection()
