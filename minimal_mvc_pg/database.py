@@ -21,7 +21,7 @@ def init_db():
     conn = db_connection()
     cur = conn.cursor()
     
-    # cur.execute('''CREATE TABLE IF NOT EXISTS categories (id SERIAL PRIMARY KEY, category_name TEXT NOT NULL UNIQUE)''')
+    # cur.execute('''CREATE TABLE IF NOT EXISTS users (uid SERIAL PRIMARY KEY, category_name TEXT NOT NULL UNIQUE)''')
     # cur.execute('''CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY, todo_text TEXT NOT NULL UNIQUE, category_id INTEGER NOT NULL, FOREIGN KEY(category_id) REFERENCES categories(id))''')
     # conn.commit()
 

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Your Dashboard</title>
+  </head>
+  <body>
+    <h1>Welcome, {{ username }}!</h1>
+    <p>You have had <strong>{{ beer_count }}</strong> beers.</p>
+    <p>You’ve spent a total of <strong>{{ "%.2f"|format(money_spent) }}DKK</strong>.</p>
+
+    <form action="{{ url_for('drink') }}" method="post">
+      <button type="submit">Have another beer 🍺</button>
+    </form>
+  </body>
+</html>
