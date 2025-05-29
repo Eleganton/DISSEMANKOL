@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Sign Up</title>
   </head>
   <body>
-    <h1>Log In</h1>
+    <h1>Sign Up</h1>
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% for category, msg in messages %}
         <div class="flash {{ category }}">{{ msg }}</div>
@@ -14,7 +14,8 @@
     <form method="post">
       <label>Username: <input type="text" name="username"></label><br>
       <label>Password: <input type="password" name="password"></label><br>
-      <button type="submit">Log In</button>
+      <label>Major:    <input type="text" name="major" required></label><br>
+      <button type="submit">Sign Up</button>
     </form>
-    <p><a href="{{ url_for('signup') }}">Create an account</a></p>
+    <p><a href="{{ url_for('login') }}">Already have an account? Log in</a></p>
 </html>
