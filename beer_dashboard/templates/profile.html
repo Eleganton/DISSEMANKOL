@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Welcome, {{ username }}!</h1>
+      </header>
+
+      <section class="profile-stats">
+        <div class="stat-card">
+          <h3>Major</h3>
+          <p>{{ major }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Beers</h3>
+          <p>{{ beer_count }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Spent</h3>
+          <p>{{ "%.2f"|format(money_spent) }} Kr.</p>
+        </div>
+      </section>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <section class="flash-container">
+            {% for category, msg in messages %}
+              <div class="flash flash-{{ category }}">{{ msg }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      <section class="actions">
+        <form action="{{ url_for('drink') }}" method="post">
+          <button class="btn btn-primary" type="submit">Have another beer 🍺</button>
+        </form>
+        <form action="{{ url_for('deleteUser') }}" method="post">
+          <button class="btn btn-danger" type="submit">Delete user 💀</button>
+        </form>
+      </section>
+
+      <section class="leaderboard">
+        <h2>Top Beer Drinkers Leaderboard</h2>
+        <ol>
+          {% for user in leaderboard %}
+            <li>
+              <span class="leader-name">{{ user.username }}</span> 
+              <span class="leader-major">{{ user.major }}</span>  
+              <span class="leader-count">{{ user.beer_count }}</span>beers
+            </li>
+          {% endfor %}
+        </ol>
+      </section>
+
+      <footer class="footer">
+        <p><a href="{{ url_for('logout') }}" class="logout-link">Log out</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

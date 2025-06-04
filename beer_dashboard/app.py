@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from extensions import db
 from models.userTable import UserTable
+from dbsetup import setuptable
 import re
 
 def create_app():
@@ -29,9 +30,8 @@ def create_app():
     with app.app_context():
         db.create_all()
         if not UserTable.query.first():
-            u = UserTable(username="MrMikPik", major="DIS")
-            u.set_password("pik@example.com")
-            db.session.add(u)
+            for user in setuptable:
+                db.session.add(user)
             db.session.commit()
 
     # Signup route
@@ -112,7 +112,7 @@ def create_app():
     @login_required
     def drink():
         current_user.beer_count += 1
-        current_user.money_spent += 5.0
+        current_user.money_spent += 15.0
         db.session.commit()
         flash('Enjoy your beer!', 'success')
         return redirect(url_for('profile'))

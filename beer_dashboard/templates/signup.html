@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <header class="auth-header">
+        <h1>Sign Up</h1>
+      </header>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <section class="flash-container">
+            {% for category, msg in messages %}
+              <div class="flash flash-{{ category }}">{{ msg }}</div>
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      <div class="signup-card">
+        <form method="post" class="signup-form">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" placeholder="Choose a username" required>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="••••••••" required>
+          </div>
+
+          <div class="input-group">
+            <label for="major">Major</label>
+            <input id="major" type="text" name="major" placeholder="e.g. DAT, ML, FYS" required>
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+        </form>
+
+        <p class="signup-link">
+          Already have an account? <a href="{{ url_for('login') }}">Log in</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
