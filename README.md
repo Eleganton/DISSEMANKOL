@@ -1,4 +1,3 @@
-````markdown
 # Beer Dashboard
 
 A simple Flask app where users can sign up, log in, track beers consumed (and money spent), and view a leaderboard of top drinkers. Modern, responsive UI with Docker Compose support.
@@ -22,7 +21,7 @@ A simple Flask app where users can sign up, log in, track beers consumed (and mo
 2. **Build and start with Docker Compose**
 
    ```bash
-   docker compose --build
+   docker compose up --build
    ```
    Optionally add -d to free terminal
 
