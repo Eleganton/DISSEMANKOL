@@ -16,7 +16,7 @@ A simple Flask app where users can sign up, log in, track beers consumed (and mo
    ```bash
    git clone https://github.com/Eleganton/DISSEMANKOL
    cd beer-dashboard
-````
+   ```
 
 2. **Build and start with Docker Compose**
 
